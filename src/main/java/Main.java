@@ -69,13 +69,22 @@ public class Main {
         System.out.println("---------------Resposta da 4----------------");
 
 
-        Map<Cliente, List<Pedido>> PedidoPorCliente = listaPedidos.stream().collect(Collectors.groupingBy(pedido -> pedido.getCliente()));
+        Map<Cliente, List<Pedido>> PedidoPorCliente = listaPedidos.stream()
+                .collect(Collectors.groupingBy(pedido -> pedido.getCliente()));
+
+        List<Pedido> listaRecente = new ArrayList<>();
+
         PedidoPorCliente.forEach((cliente, pedidos) -> {
             Pedido novo = pedidos.stream()
-                    .max(Comparator.comparing(pedido -> pedido.getDataPedido())).get();
+                    .max(Comparator.comparing(pedido -> pedido.getDataPedido()))
+                    .get();
+
+            listaRecente.add(novo);
 
             System.out.println(novo.getId());
         });
+
+
     }
 
 
