@@ -1,3 +1,5 @@
+package Base;
+
 public class Produto {
     private long id;
     private String nome;

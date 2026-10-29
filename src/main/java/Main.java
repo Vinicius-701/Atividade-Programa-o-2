@@ -1,7 +1,12 @@
-import java.math.*;
+import Base.*;
+
+import Questoes.Questao1;
+import Questoes.Questao2;
+import Questoes.Questao3;
+import Questoes.Questao4;
+
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 
 public class Main {
@@ -41,48 +46,15 @@ public class Main {
 
         List<Pedido> listaPedidos = new ArrayList<>(List.of(V1, V2, V3, V4, V5, V6));
 
+        Questao1.executar(listaJogos);
+        Questao2.executar(listaPedidos);
 
-        // resposta da 1
-        listaJogos.stream().filter(jogo -> jogo.getPreco() < 100).forEach(jogo -> System.out.println(jogo.getNome()));
+        Questao3.executar(listaPodutosTodos);
 
-        // resposta da 2
-        System.out.println("---------------Resposta da 2----------------");
-        List<Pedido> listaPedidosPapelaria = listaPedidos.stream().
-                filter(pedido -> pedido.getListaProdutos().stream().
-                        anyMatch(produto -> produto.getCategoria().equals("Papelaria")))
-                .collect(Collectors.toList());
-
-        listaPedidosPapelaria.stream().forEach(c -> System.out.println(c.getId())); // imprimi o ID, pois para os pedidos não há um nome
-
-        // resposta da 3 - forEach dentro de outro forEach
-        System.out.println("---------------Resposta da 3----------------");
-
-        listaPodutosTodos.stream().collect(Collectors.groupingBy(c -> c.getCategoria()))
-                .forEach((categoria, produtos) -> {
-                    System.out.println("Categoria: " + categoria);
-
-                    produtos.forEach(produto -> System.out.println(produto.getNome()));
-                });
+        Questao4.executar(listaPedidos);
 
 
-        // resposta da 4
-        System.out.println("---------------Resposta da 4----------------");
 
-
-        Map<Cliente, List<Pedido>> PedidoPorCliente = listaPedidos.stream()
-                .collect(Collectors.groupingBy(pedido -> pedido.getCliente()));
-
-        List<Pedido> listaRecente = new ArrayList<>();
-
-        PedidoPorCliente.forEach((cliente, pedidos) -> {
-            Pedido novo = pedidos.stream()
-                    .max(Comparator.comparing(pedido -> pedido.getDataPedido()))
-                    .get();
-
-            listaRecente.add(novo);
-
-            System.out.println(novo.getId());
-        });
 
 
     }

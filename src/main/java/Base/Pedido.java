@@ -1,3 +1,5 @@
+package Base;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +11,7 @@ public class Pedido {
     private List<Produto> listaProdutos = new ArrayList<>();
     private Cliente cliente;
 
-        public Pedido(long numId,int dia, int mes, int ano, List<Produto> lista, Cliente c){
+        public Pedido(long numId, int dia, int mes, int ano, List<Produto> lista, Cliente c){
             this.id = numId;
             this.dataPedido = LocalDate.of(ano, mes, dia);
             this.listaProdutos = lista;
